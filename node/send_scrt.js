@@ -24,6 +24,8 @@ const {
 );
 console.log(amount)
 
+const bob = "secret1f0353c2rsg0708ugl7qvhrpr7w8065p0mf0sae"
+
 // uscrtを送金する
 const msg = new MsgSend({
   from_address: myAddress,
