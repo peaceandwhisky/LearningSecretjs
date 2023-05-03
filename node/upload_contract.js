@@ -1,17 +1,17 @@
-import { SecretNetworkClient, Wallet, MsgSend, stringToCoins } from "secretjs";
+import { SecretNetworkClient, Wallet } from "secretjs";
 import * as fs from "fs";
+import * as dotenv from "dotenv" // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config()
 
-const wallet = new Wallet(
-  "your account mnemonic"
-);
+const wallet = new Wallet(process.env.MNEMONIC);
 
 const contract_wasm = fs.readFileSync("./snip20_reference_impl.wasm");
 
 const secretjs = new SecretNetworkClient({
-  chainId: "secretdev-1",
-  url: "https://1317-(your gitpod scrtlabs-gitpodlocalsec-hogehogehoge.ws-us96.gitpod.io/)",
+  url: process.env.SECRET_LCD_URL,
   wallet: wallet,
   walletAddress: wallet.address,
+  chainId: process.env.SECRET_CHAIN_ID,
 });
 
 let upload_contract = async () => {
